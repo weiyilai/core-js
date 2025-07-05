@@ -779,7 +779,8 @@ const base = {
   // strings and non-strings should not be added
   'sonarjs/no-incorrect-string-concat': ERROR,
   // `await` should only be used with promises
-  'sonarjs/no-invalid-await': ERROR,
+  // broken in eslint-plugin-sonarjs@3.0.3+
+  // 'sonarjs/no-invalid-await': ERROR,
   // function returns should not be invariant
   'sonarjs/no-invariant-returns': ERROR,
   // literals should not be used as functions
@@ -877,8 +878,7 @@ const base = {
   // enforce the use of `Math.SQRT2` instead of other ways
   'math/prefer-math-sqrt2': ERROR,
   // enforce the use of `Math.trunc()` instead of other truncations
-  // temporarily disabled because of https://github.com/ota-meshi/eslint-plugin-math/issues/92
-  'math/prefer-math-trunc': OFF,
+  'math/prefer-math-trunc': [ERROR, { reportBitwise: false }],
   // enforce the use of `Number.EPSILON` instead of other ways
   'math/prefer-number-epsilon': ERROR,
   // enforce the use of `Number.isFinite()` instead of other checking ways
@@ -2067,10 +2067,16 @@ const packageJSON = {
   'package-json/no-redundant-files': ERROR,
   // enforce that package dependencies are unique
   'package-json/unique-dependencies': ERROR,
-  // checks existence of local dependencies in the package.json
-  'package-json/valid-local-dependency': ERROR,
+  // enforce that the author field is a valid npm author specification
+  'package-json/valid-author': ERROR,
+  // enforce that the `bin` property is valid
+  'package-json/valid-bin': ERROR,
   // enforce that if repository directory is specified, it matches the path to the package.json file
   'package-json/valid-repository-directory': ERROR,
+  // enforce that the `scripts` property is valid.
+  'package-json/valid-scripts': ERROR,
+  // enforce that the `type` property is valid
+  'package-json/valid-type': ERROR,
   // enforce that package versions are valid semver specifiers
   'package-json/valid-version': ERROR,
 };
@@ -2094,8 +2100,6 @@ const packagesPackageJSON = {
   'package-json/require-version': ERROR,
   // enforce that package names are valid npm package names
   'package-json/valid-name': ERROR,
-  // enforce that package.json has all properties required by the npm spec
-  'package-json/valid-package-def': ERROR,
 };
 
 const nodeDependencies = {
